@@ -1,12 +1,11 @@
-const express = require('express')
-const webApp = express()
-const webServer = require('http').createServer(webApp)
+import express from 'express'
+import http from 'http'
 
-webApp.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html')
+const app = express()
+const server = http.createServer(app)
+
+app.use(express.static('public'))
+
+server.listen(3000, () => {
+    console.log(`> Server listening on port: 3000`)
 })
-
-
-webServer.listen(3000, function () {
-    console.log('> Server listening on port:', 3000)
-});
