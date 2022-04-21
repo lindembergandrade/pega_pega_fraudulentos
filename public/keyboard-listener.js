@@ -1,6 +1,9 @@
+import { stat } from "fs"
+
 export default function createKeyboardListener(document) {
     const state = {
-        observers: []
+        observers: [],
+        playerId: null
     }
 
     function subscribe(observerFunction) {
@@ -13,18 +16,22 @@ export default function createKeyboardListener(document) {
         }
     }
 
+    function registerCurrentPlayer(playerId) {
+        stat.playerId = playerId
+    }
+
     document.addEventListener('keydown', handleKeydown)
 
     function handleKeydown(event) {
         const keyPressed = event.key
 
         const command = {
-            playerId: 'player1',
+            playerId: state.playerId,
             keyPressed
         }
 
         notifyAll(command)
     }
 
-    return { subscribe }
+    return { subscribe, registerCurrentPlayer }
 }
