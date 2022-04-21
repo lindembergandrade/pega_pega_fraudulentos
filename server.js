@@ -17,13 +17,13 @@ sockets.on('connection', (socket) => {
     const playerId = socket.id
     console.log(`> Player connected on Server with id ${playerId}`)
 
-    game.addPlayer({ playerId })
+    game.addPlayer({ playerId: playerId })
     console.log(game.state)
 
     socket.emit('setup', game.state)
 
     socket.on('disconnect', () => {
-        game.removePlayer({ playerId })
+        game.removePlayer({ playerId: playerId })
         console.log(`> Player disconnected ${playerId}`)
     })
 })
