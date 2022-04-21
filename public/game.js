@@ -1,17 +1,19 @@
+import { mod } from "./utils.js"
+
 export default function createGame() {
     const state = {
         players: {},
         fraudulentos: {},
         screen: {
-            width: 10,
-            height: 10
+            width: 25,
+            height: 25
         }
     }
 
     const observers = []
 
     function start() {
-        const frequency = 10000
+        const frequency = 4000
 
         setInterval(addFraudulento, frequency)
     }
@@ -34,17 +36,23 @@ export default function createGame() {
         const playerId = command.playerId
         const playerX = 'playerX' in command ? command.playerX : Math.floor(Math.random() * state.screen.width)
         const playerY = 'playerY' in command ? command.playerY : Math.floor(Math.random() * state.screen.height)
+        const score = 0
+        const name = command.name
 
         state.players[playerId] = {
             x: playerX,
-            y: playerY
+            y: playerY,
+            score,
+            name
         }
 
         notifyAll({
             type: 'add-player',
             playerId: playerId,
             playerX: playerX,
-            playerY: playerY
+            playerY: playerY,
+            score,
+            name
         })
     }
 
@@ -90,29 +98,19 @@ export default function createGame() {
 
     function movePlayer(command) {
         notifyAll(command)
-
-        // console.log(command)
-
+        
         const acceptedMoves = {
             ArrowUp(player) {
-                if (player.y - 1 >= 0) {
-                    player.y = player.y - 1
-                }
+                player.y = mod(state.screen.height, player.y - 1)
             },
             ArrowRight(player) {
-                if (player.x + 1 < state.screen.width) {
-                    player.x = player.x + 1
-                }
+                player.x = mod(state.screen.width, player.x + 1)
             },
             ArrowDown(player) {
-                if (player.y + 1 < state.screen.height) {
-                    player.y = player.y + 1
-                }
+                player.y = mod(state.screen.height, player.y + 1)
             },
             ArrowLeft(player) {
-                if (player.x - 1 >= 0) {
-                    player.x = player.x - 1
-                }
+                player.x = mod(state.screen.width, player.x - 1)
             }
         }
 
@@ -133,11 +131,12 @@ export default function createGame() {
 
         for (const fraudulentoId in state.fraudulentos) {
             const fraudulento = state.fraudulentos[fraudulentoId]
-            console.log(`Checking ${playerId} and ${fraudulentoId}`)
+            // console.log(`Checking ${playerId} score ${player.score} and ${fraudulentoId}`)
 
             if (player.x === fraudulento.x && player.y === fraudulento.y) {
-                console.log(`COLLISION between ${playerId} and ${fraudulentoId}`)
+                // console.log(`COLLISION between ${playerId} and ${fraudulentoId}`)
                 removeFraudulento({ fraudulentoId: fraudulentoId })
+                player.score += 1
             }
         }
     }
