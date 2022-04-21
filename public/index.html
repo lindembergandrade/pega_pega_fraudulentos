@@ -59,6 +59,16 @@
             game.removePlayer(command);
         })
 
+        socket.on('add-fraudulento', (command) => {
+            console.log(`Receiving ${command.type} > ${command.fraudulentoId}`)
+            game.addFraudulento(command)
+        })
+
+        socket.on('remove-fraudulento', (command) => {
+            console.log(`Receiving ${command.type} > ${command.playerId}`)
+            game.removeFraudulento(command);
+        })
+
         socket.on('move-player', (command) => {
             console.log(`Receiving ${command.type} > ${command.playerId}`)
             const playerId = socket.id

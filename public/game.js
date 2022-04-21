@@ -10,6 +10,11 @@ export default function createGame() {
 
     const observers = []
 
+    function start() {
+        const frequency = 2000
+        setInterval(addFraudulento, frequency)
+    }
+
     function subscribe(observerFunction) {
         observers.push(observerFunction)
     }
@@ -54,20 +59,32 @@ export default function createGame() {
     }
 
     function addFraudulento(command) {
-        const fraudulentoId = command.fraudulentoId
-        const fraudulentoX = command.fraudulentoX
-        const fraudulentoY = command.fraudulentoY
+        const fraudulentoId = command ? command.fraudulentoId : Math.floor(Math.random() * 10000000)
+        const fraudulentoX = command ? command.fraudulentoX : Math.floor(Math.random() * state.screen.width)
+        const fraudulentoY = command ? command.fraudulentoY : Math.floor(Math.random() * state.screen.height)
 
         state.fraudulentos[fraudulentoId] = {
             x: fraudulentoX,
             y: fraudulentoY
         }
+
+        notifyAll({
+            type: 'add-fraudulento',
+            fraudulentoId: fraudulentoId,
+            fraudulentoX: fraudulentoX,
+            fraudulentoY: fraudulentoY
+        })
     }
 
     function removeFraudulento(command) {
         const fraudulentoId = command.fraudulentoId
 
         delete state.fraudulentos[fraudulentoId]
+
+        notifyAll({
+            type: 'remove-fraudulento',
+            fraudulentoId: fraudulentoId
+        })
     }
 
     function movePlayer(command) {
@@ -121,5 +138,5 @@ export default function createGame() {
         }
     }
 
-    return { addPlayer, removePlayer, addFraudulento, removeFraudulento, movePlayer, state, setState, subscribe }
+    return { addPlayer, removePlayer, addFraudulento, removeFraudulento, movePlayer, state, setState, subscribe, start }
 }
