@@ -1,0 +1,24 @@
+{
+    "name": "pega-pega-fraudulento-multiplayer",
+    "version": "1.0.0",
+    "description": "Um jogo multiplayer bastante simples para pegarmos os fraudulentos",
+    "scripts": {
+        "start": "nodemon server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lindembergandrade/pega_pega_fraudulentos"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lindembergandrade/pega_pega_fraudulentos/issues"
+    },
+    "homepage": "https://github.com/lindembergandrade/pega_pega_fraudulentos#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "nodemon": "^1.19.1",
+        "socket.io": "^2.2.0"
+    }
+}
