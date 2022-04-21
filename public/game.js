@@ -11,7 +11,8 @@ export default function createGame() {
     const observers = []
 
     function start() {
-        const frequency = 2000
+        const frequency = 10000
+
         setInterval(addFraudulento, frequency)
     }
 
@@ -83,17 +84,24 @@ export default function createGame() {
 
         notifyAll({
             type: 'remove-fraudulento',
-            fraudulentoId: fraudulentoId
+            fraudulentoId: fraudulentoId,
         })
     }
 
     function movePlayer(command) {
         notifyAll(command)
 
+        // console.log(command)
+
         const acceptedMoves = {
             ArrowUp(player) {
                 if (player.y - 1 >= 0) {
                     player.y = player.y - 1
+                }
+            },
+            ArrowRight(player) {
+                if (player.x + 1 < state.screen.width) {
+                    player.x = player.x + 1
                 }
             },
             ArrowDown(player) {
@@ -105,12 +113,7 @@ export default function createGame() {
                 if (player.x - 1 >= 0) {
                     player.x = player.x - 1
                 }
-            },
-            ArrowRight(player) {
-                if (player.x + 1 < state.screen.width) {
-                    player.x = player.x + 1
-                }
-            },
+            }
         }
 
         const keyPressed = command.keyPressed
@@ -122,6 +125,7 @@ export default function createGame() {
             moveFunction(player)
             checkForFraudulentoCollision(playerId)
         }
+
     }
 
     function checkForFraudulentoCollision(playerId) {
@@ -133,10 +137,20 @@ export default function createGame() {
 
             if (player.x === fraudulento.x && player.y === fraudulento.y) {
                 console.log(`COLLISION between ${playerId} and ${fraudulentoId}`)
-                removeFraudulento({ fraudulentoId })
+                removeFraudulento({ fraudulentoId: fraudulentoId })
             }
         }
     }
 
-    return { addPlayer, removePlayer, addFraudulento, removeFraudulento, movePlayer, state, setState, subscribe, start }
+    return {
+        addPlayer,
+        removePlayer,
+        movePlayer,
+        addFraudulento,
+        removeFraudulento,
+        state,
+        setState,
+        subscribe,
+        start
+    }
 }

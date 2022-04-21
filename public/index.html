@@ -28,7 +28,6 @@
         const game = createGame()
         const keyboardListener = createKeyboardListener(document)
 
-
         const socket = io()
         socket.on('connect', () => {
             const playerId = socket.id
@@ -73,6 +72,7 @@
             console.log(`Receiving ${command.type} > ${command.playerId}`)
             const playerId = socket.id
             if (playerId !== command.playerId) {
+                console.log(`Socketid: ${socket.id} command.playerId: ${command.playerId}`)
                 game.movePlayer(command);
             }
         })

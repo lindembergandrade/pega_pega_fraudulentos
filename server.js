@@ -10,6 +10,7 @@ const sockets = socketio(server)
 app.use(express.static('public'))
 
 const game = createGame()
+game.start()
 
 game.subscribe((command) => {
     console.log(`Emmiting ${command.type}`)
@@ -21,7 +22,6 @@ sockets.on('connection', (socket) => {
     console.log(`> Player connected on Server with id ${playerId}`)
 
     game.addPlayer({ playerId: playerId })
-    console.log(game.state)
 
     socket.emit('setup', game.state)
 
@@ -31,10 +31,12 @@ sockets.on('connection', (socket) => {
     })
 
     socket.on('move-player', (command) => {
+        console.log(game.state)
         command.playerId = playerId
         command.type = 'move-player'
 
         game.movePlayer(command)
+
     })
 })
 
