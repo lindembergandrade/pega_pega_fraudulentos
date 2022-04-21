@@ -1,5 +1,3 @@
-import { stat } from "fs"
-
 export default function createKeyboardListener(document) {
     const state = {
         observers: [],
