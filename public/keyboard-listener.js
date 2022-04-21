@@ -17,7 +17,7 @@ export default function createKeyboardListener(document) {
     }
 
     function registerCurrentPlayer(playerId) {
-        stat.playerId = playerId
+        state.playerId = playerId
     }
 
     document.addEventListener('keydown', handleKeydown)
