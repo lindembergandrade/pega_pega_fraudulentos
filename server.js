@@ -18,7 +18,7 @@ game.addFraudulento({ fraudulentoId: 'fraudulento2', fraudulentoX: 3, fraudulent
 
 console.log(game.state)
 
-sockets.onconnection('connection', (socket) => {
+sockets.on('connection', (socket) => {
     const playerId = socket.id
     console.log(`> Player connected on Server with id ${playerId}`)
 })
