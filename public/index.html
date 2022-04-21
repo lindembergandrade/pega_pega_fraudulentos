@@ -32,8 +32,11 @@
         const screen = document.getElementById('screen')
         renderScreen(screen, game, requestAnimationFrame)
 
-        game.addPlayer({ playerId: 'player1', playerX: 0, playerY: 0 })
-        game.addFraudulento({ fraudulentoId: 'fraudulento', fraudulentoX: 3, fraudulentoY: 3 })
+        const socket = io()
+        socket.on('connect', () => {
+            const playerId = socket.id
+            console.log(`> Player connected on Client with id ${playerId}`)
+        })
     </script>
 </body>
 
