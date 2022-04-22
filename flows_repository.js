@@ -1,27 +1,27 @@
 export default function flowRepository() {
     const flows = [
         {
-            name: 'AP-Regex',
+            name: 'Regex Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex1',
+            name: 'SCD Graves Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex2',
+            name: 'Mantika Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex3',
+            name: 'Items Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex4',
+            name: 'Sherloq Flow',
             available: true,
             playerId: null
         },
