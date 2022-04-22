@@ -6,6 +6,11 @@ export default function flowRepository() {
             playerId: null
         },
         {
+            name: 'AP Graves Flow',
+            available: true,
+            playerId: null
+        },
+        {
             name: 'SCD Graves Flow',
             available: true,
             playerId: null
@@ -26,57 +31,52 @@ export default function flowRepository() {
             playerId: null
         },
         {
-            name: 'AP-Regex5',
+            name: 'Venta de Hojas Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex6',
+            name: 'Questions Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex7',
+            name: 'Spam en questions flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex8',
+            name: 'Spammers Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex9',
+            name: 'Melidot Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex10',
+            name: 'Misclassified Porn',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex11',
+            name: 'OCF Denounces Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex12',
+            name: 'Mensajeria Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex13',
+            name: 'SCD Moderation Flow',
             available: true,
             playerId: null
         },
         {
-            name: 'AP-Regex14',
-            available: true,
-            playerId: null
-        },
-        {
-            name: 'AP-Regex15',
+            name: 'Items attribute flow',
             available: true,
             playerId: null
         },
