@@ -12,7 +12,7 @@ export default function renderScreen(screen, scoreTable, game, requestAnimationF
 
     for (const playerId in game.state.players) {
         const player = game.state.players[playerId]
-        context.fillStyle = 'black'
+        context.fillStyle = 'grey'
         context.fillRect(player.x, player.y, 1, 1)
     }
 
